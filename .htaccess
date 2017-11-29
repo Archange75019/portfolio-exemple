@@ -1,0 +1,9 @@
+Options All -Indexes
+ErrorDocument 403 http://portfolio-arnaud.comli.com/
+ErrorDocument 404 http://portfolio-arnaud.comli.com/
+
+
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>

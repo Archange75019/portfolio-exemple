@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="assets/js/jquery.cleditor.css" />
+        <script
+                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+        <script type="text/javascript" src="assets/js/jquery.cleditor.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+        <script type="text/javascript">
+            $(document).ready(function() {  $("#input").cleditor();  });
+            $(document).ready(function() {  $("#contenu").cleditor();  });
+        </script>
+        <link rel="stylesheet" href="assets/css/style.css" >
+        <title>Title</title>
+    </head>
+    <body>
+        <main>
+            <?="Bienvenue ".$_SESSION['pseudo']." !"?>
+            <a href="index.php?page=deconnexion">Deconnexion</a>
+
+               <form method="post"action="">
+                   <h1>Mise à jour des compétences</h1>
+                   <p><input type="number" min="0" name="html" placeholder="comp Html/css en %"></p>
+                   <p><input type="number" min="0" name="php"placeholder="Comp php en %"></p>
+                   <p><input type="number" min="0" name="js" placeholder="Comp js en %"></p>
+                   <input type="submit" name="Envoyer">
+               </form>
+
+            <?php foreach ($aPresent as $aPost ){?>
+            <form method="post" action="">
+                <h1>Mise à jour de la présentation</h1>
+                <p><input type="text" name="titre" value="<?=htmlspecialchars( $aPost['titre'])?>"></p>
+                <p><textarea id="contenu" name="contenu"><?=htmlspecialchars( $aPost['contenu'])?></textarea></p>
+                <input type="submit" name="presentation">
+                <?php }?>
+            </form>
+
+
+
+          <form enctype="multipart/form-data" method="post" action="">
+                <h1>Insertion d'un projet</h1>
+                <p><input type="text" name="titre" placeholder="Votre titre d'article"></p>
+                <p><textarea name="input" id="input" placeholder="Le contenu de l'article"></textarea></p>
+
+
+
+                <input type="submit" name="article">
+          </form>
+
+            <div id="add">
+                <section id="listeProjet">
+
+                    <h1>Liste des projets</h1></br>
+
+                    <table>
+
+                        <tr>
+                            <th>Titre</th>
+
+
+                            <th>Date</th>
+
+                        </tr>
+
+                        <?php foreach ($aProjet as $value){?>
+
+                            <tr>
+                                <td><p><?= htmlspecialchars($value['titre']);?></p></td>
+
+
+                                <td><p><?= htmlspecialchars($value['date']);?></p></td>
+                                <td><p><a href="index.php?page=delete&id=<?=$value['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a> </p></td>
+                                <td><p><a href=""onclick="javascript:popup('<?=$value['id'];?>')"><i class="fa fa-pencil" aria-hidden="true"></i></a></p></td>
+
+                            </tr>
+                        <?php }?>
+                    </table>
+
+                </section>
+                <section id="listeContact">
+                    <h1>Liste Contact</h1>
+                    <table>
+
+                        <tr>
+                            <th>Nom</th>
+
+                            <th>Prenom</th>
+                            <th>date</th>
+
+                            <th>message</th>
+
+                        </tr>
+                        <?php foreach ($aCont as $value){?>
+                        <tr>
+                            <td><p><?= htmlspecialchars($value['nom']);?></p></td>
+                            <td><p><?= htmlspecialchars($value['prenom']);?></p></td>
+
+                            <td><p><?= htmlspecialchars($value['date']);?></p></td>
+                            <td><p><a href=""onclick="javascript:mail('<?=$value['id'];?>')"><i class="fa fa-envelope" aria-hidden="true"></i></p></td>
+                            <td><p><a href="index.php?page=deletemessage&id=<?=$value['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a> </p></td>
+                        </tr>
+                        <?php } ?>
+                    </table>
+                </section>
+                <section id="ListeAvis">
+                    <h1>Liste des Avis</h1>
+                    <table>
+
+                        <tr>
+                            <th>entreprise</th>
+
+                            <th>note</th>
+
+                            <th>titre</th>
+
+                        </tr>
+                        <?php foreach ($aAvis as $value){?>
+                            <tr>
+                                <td><img src="<?= $value['img']; ?>"class ="logoadmin"> </td>
+                                <td><p><?= htmlspecialchars($value['note']);?></p></td>
+
+                                <td><p><?= htmlspecialchars($value['titre']);?></p></td>
+                                <td><p><a href=""onclick="javascript:avis('<?=$value['id'];?>')"><i class="fa fa-book" aria-hidden="true"></i></p></td>
+                                <td><p><a href="index.php?page=deleteavis&id=<?=$value['id'];?>"><i class="fa fa-trash" aria-hidden="true"></i></a> </p></td>
+                                <td><p><a href="index.php?page=deletecompany&"</p></td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+
+                </section>
+                <section id="AddCompagny">
+                    <h1>Envoi informations de connection</h1>
+                    <form method="post" action="">
+                        <p>
+                            Veuillez indiquer le genre de l'interlocuteur:<br />
+                            <input type="radio" name="sexe" value="Monsieur" id="monsieur" /> <label for="monsieur">monsieur</label>
+                            <input type="radio" name="sexe" value="Madame" id="madame" /> <label for="madame">madame</label>
+                            <input type="radio" name="sexe" value="Mademoiselle" id="mademoiselle" /> <label for="mademoiselle">mademoiselle</label>
+
+                        </p>
+                        <p><input type="text" name="NomInterlocuteur" placeholder="Noms de l'interlocuteur" /></p>
+                        <p><input type="text" name="NomCompagny" placeholder="noms de l'entreprise"/></p>
+                        <p><input type="text" name="Mdp" placeholder="Mot de passe"/></p>
+                        <p><input type="email" name="EmailInterlocuteur" placeholder="email de l'interlocuteur" /></p>
+                        <input type="submit" name="AjoutUser">
+
+
+                    </form>
+
+                </section>
+            </div>
+        </main>
+        <footer>
+            <p>Ce site a été crée par Arnaud Escalier. Les photos utilisées pour ce site sont libre de droit</p>
+        </footer>
+
+        <script src="assets/js/function.js"></script>
+        <script src="assets/js/function2.js"></script>
+    </body>
+
+
+
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/style.css" >
+    <title>Projets</title>
+</head>
+<body>
+        <div id="menu">
+            <?php include 'php/views/header.phtml' ?>
+        </div>
+    <main>
+        <?php include 'search.phtml'?>
+        <?php foreach ($aProjet as $aPost ){?>
+            <section>
+
+                    <h3><?= htmlspecialchars($aPost["titre"]);?></h3>
+
+
+
+
+
+                    <p><?= substr($aPost["contenu"],0,350);?></p>
+                <p class="date">ajouté le <?= htmlspecialchars($aPost["date"]);?></p>
+
+                <button><a href="index.php?page=article&id=<?= htmlspecialchars($aPost["id"]);?>">Lire la suite</a></button>
+            </section>
+        <?php }?>
+    </main>
+</body>
+<footer>
+    <p>Ce site a été crée par Arnaud Escalier. Les photos utilisées pour ce site sont libre de droit</p>
+</footer>
+<script type="text/javascript" src="assets/js/function.js"></script>
+
+</html>

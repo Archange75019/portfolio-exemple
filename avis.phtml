@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
+
+        <link rel="stylesheet" href="assets/css/style.css" >
+        <title>Votre avis</title>
+    </head>
+    <body>
+
+            <div id="menu">
+                <?php include 'php/views/header.phtml'?>
+            </div>
+        <main>
+            <?php foreach ($aAvis as $value){?>
+                <div class="AvisAffiche">
+                    <p class="entreprise"><?=$value['entreprise']?></p>
+                    <img src="<?= $value['img']?>" class="logo"/>
+                    <h1><?= $value['titre']?></h1>
+                        <div class="star">
+                          <?php for ($i=0;$i<=$value['note']-1; $i++){?>
+                              <img src="assets/img/stars/staron.gif" id="<?= $i?>"/>
+                          <?php }?>
+
+                          <?php for ($i=$value['note'];$i<=9; $i++){?>
+                                <img src="assets/img/stars/staroff.gif" id="<?= $i?>"/>
+                          <?php }?>
+
+                </div>
+
+
+<!--Contenu de l'avis-->
+                    <p><?= $value['contenu']?></p>
+                </div>
+            <?php }?>
+
+        </main>
+
+            <script type="text/javascript" src="assets/js/function.js"></script>
+
+    </body>
+    <footer>
+        <p>Ce site a été crée par Arnaud Escalier. Les photos utilisées pour ce site sont libre de droit</p>
+    </footer>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+        <script
+                src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="assets/css/style.css" >
+        <title>Title</title>
+    </head>
+    <body>
+        <main>
+            <form method="post" action="">
+                <input type="text" name="pseudo" placeholder="Nom d'utilisateur" value="<?php if (!empty($_POST["pseudo"])) { echo stripcslashes(htmlspecialchars($_POST["pseudo"],ENT_NOQUOTES)); } ?>">
+                <input type="password" name="pass" placeholder="Votre Password" value="<?php if (!empty($_POST["pass"])) { echo stripcslashes(htmlspecialchars($_POST["pass"],ENT_NOQUOTES)); } ?>">
+                <input type="submit" value="Connexion" name="connexion">
+            </form>
+        </main>
+    </body>
+    <footer>
+        <p>Ce site a été crée par Arnaud Escalier. Les photos utilisées pour ce site sont libre de droit</p>
+    </footer>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" type="text/css" href="assets/js/jquery.cleditor.css" />
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/js/jquery.cleditor.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <script type="text/javascript">
+        $(document).ready(function() {  $("#input").cleditor();  });
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css" >
+    <title>Title</title>
+</head>
+
+<main>
+    <?php foreach ($aPopProjet as $value){?>
+        <form enctype="multipart/form-data" method="post" action="" >
+            <h1>Mise à jour d'un article</h1>
+            <p><input type="text" name="titre" value="<?= htmlspecialchars($value['titre']);?>"></p>
+            <p><textarea name="input" id="input"><?= $value['contenu'];?></textarea></p>
+
+            <button onclick="self.close()">Fermer</button>
+            <input type="submit" name="article" value="envoyer" >
+        </form>
+
+    <?php }?>
+    <script src="assets/js/function.js"></script>
+    <script src="assets/js/jquery.cleditor.js"></script>
+</main>
+
+</html>

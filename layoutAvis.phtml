@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="assets/js/jquery.cleditor.css" />
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+        <script type="text/javascript" src="assets/js/jquery.cleditor.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+        <link rel="stylesheet" href="assets/css/style.css" >
+        <title>Title</title>
+    </head>
+    <body>
+        <main>
+            <?php foreach ($aAvis as $value){?>
+                <h1><?= $value['titre']?></h1>
+                <p><?=htmlspecialchars($value['company'])?></p>
+                <div class="star">
+                    <?php for ($i=0;$i<=$value['note']-1; $i++){?>
+                        <img src="assets/img/stars/staron.gif" id="<?= $i?>"/>
+                    <?php }?>
+
+                    <?php for ($i=$value['note'];$i<=9; $i++){?>
+                        <img src="assets/img/stars/staroff.gif" id="<?= $i?>"/>
+                    <?php }?>
+                    <p> <?=nl2br($value['contenu'])?></p>
+
+                </div>
+
+
+
+            <?php }?>
+
+        </main>
+        <script src="assets/js/mail.js"></script>
+    </body>
+
+</html>

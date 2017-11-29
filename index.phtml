@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <link rel="stylesheet" href="assets/css/style.css" >
+        <title>Accueil</title>
+    </head>
+    <body>
+        <div id="menu">
+            <?php include "php/views/header.phtml"?>
+        </div>
+        <main>
+            <div id="intro">
+                <div id="photo">
+                    <img src="assets/img/avatar/avatar.jpg">
+                    <p> Portfolio de Arnaud Escalier développeur web, maintenance software</p>
+                    <h2>Mes compétences</h2>
+                </div>
+                <div id="chart">
+
+                </div>
+
+                <div id="link">
+                    <h2>Présent aussi sur</h2>
+                        <div class="ico">
+                            <a href="https://www.linkedin.com/in/arnaud-escalier-a7a82936/"><i class="fa fa-linkedin fa-3x" aria-hidden="true"></i></a>
+                            <a href="https://github.com/Archange75019"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+                        </div>
+                </div>
+
+            </div>
+        </main>
+
+        <script type="text/javascript" src="assets/js/function.js"></script>
+        <script type="text/javascript">
+            google.charts.load("current", {packages:['corechart']});
+            google.charts.setOnLoadCallback(drawChart);
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ["Competence", "Pourcentage", { role: "style" } ],
+                    ["HTML / CSS", parseInt(<?php echo(json_encode($aCompetence[0] [1]));?>), "#1c79d1"],
+                    ["JS", parseInt(<?php echo(json_encode($aCompetence[0] [3]));?>), "#182e72"],
+                    ["PHP / MYSQL", parseInt(<?php echo(json_encode($aCompetence[0] [2]));?>), "#264272"]
+
+                ]);
+
+                var view = new google.visualization.DataView(data);
+                view.setColumns([0, 1,
+                    { calc: "stringify",
+                        sourceColumn: 1,
+                        type: "string",
+                        role: "annotation" },
+                    2]);
+
+                var options = {
+
+
+                    bar: {groupWidth: "75%"},
+                    legend: { position: "none" },
+                };
+                var chart = new google.visualization.ColumnChart(document.getElementById("chart"));
+                chart.draw(view, options);
+
+            }
+        </script>
+
+    </body>
+    <footer>
+        <p>Ce site a été crée par Arnaud Escalier. Les photos utilisées pour ce site sont libre de droit</p>
+    </footer>
+</html>
